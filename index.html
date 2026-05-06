@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>황금교회 | 대한기독교나사렛성결회</title>
+    
+    <!-- 폰트: Noto Sans KR (본문), Noto Serif KR (제목/로고) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- 아이콘: FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- 스타일: Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#0F172A',
+                        gold: '#D4AF37',
+                        lightgold: '#FDE68A',
+                        darkgray: '#334155',
+                        bglight: '#F8FAFC'
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans KR', 'sans-serif'],
+                        serif: ['Noto Serif KR', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 부드러운 스크롤 */
+        html { scroll-behavior: smooth; }
+        
+        /* 탭 메뉴 스타일 */
+        .tab-btn.active {
+            background-color: #D4AF37;
+            color: #ffffff;
+            border-color: #D4AF37;
+            font-weight: bold;
+        }
+        
+        /* 페이드 인 애니메이션 */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 로고 시안 폰트 */
+        .logo-font { font-family: 'Noto Serif KR', serif; }
+    </style>
+</head>
+<body class="bg-bglight text-darkgray font-sans antialiased">
+
+    <!-- 1. 네비게이션 바 (헤더) -->
+    <nav class="bg-white shadow-md fixed w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <!-- 현대 미니멀형 로고 적용 (로고 시안 B 기반) -->
+                <div class="flex items-center">
+                    <a href="#" class="flex items-center gap-2">
+                        <i class="fa-solid fa-dove text-gold text-2xl"></i>
+                        <span class="logo-font text-2xl font-bold text-navy tracking-tight">황금<span class="text-gold">교회</span></span>
+                    </a>
+                </div>
+                
+                <!-- PC 메뉴 -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-gray-700 hover:text-gold font-medium transition">교회소개</a>
+                    <a href="#worship" class="text-gray-700 hover:text-gold font-medium transition">예배/말씀</a>
+                    <a href="#education" class="text-gray-700 hover:text-gold font-medium transition">교육부서</a>
+                    <a href="#location" class="text-gray-700 hover:text-gold font-medium transition">오시는 길</a>
+                </div>
+                
+                <!-- 모바일 메뉴 버튼 -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-gold focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 모바일 드롭다운 메뉴 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <a href="#about" class="block px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-gold">교회소개</a>
+            <a href="#worship" class="block px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-gold">예배/말씀</a>
+            <a href="#education" class="block px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-gold">교육부서</a>
+            <a href="#location" class="block px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-gold">오시는 길</a>
+        </div>
+    </nav>
+
+    <!-- 2. 메인 히어로 섹션 -->
+    <section class="relative pt-20 pb-32 flex items-center justify-center min-h-[80vh] bg-navy overflow-hidden">
+        <!-- 배경 오버레이 및 이미지 (Unsplash API 플레이스홀더) -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?q=80&w=2000&auto=format&fit=crop" alt="Background" class="w-full h-full object-cover opacity-30">
+        </div>
+        
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-16">
+            <h1 class="logo-font text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                세상의 빛이 되는 <br><span class="text-gold">황금빛 공동체</span>
+            </h1>
+            <p class="text-lg md:text-2xl text-gray-300 mb-10 leading-relaxed font-light">
+                대한기독교나사렛성결회 황금교회에 오신 여러분을 진심으로 환영합니다.<br class="hidden md:block">
+                예수 그리스도의 사랑으로 황금처럼 변치 않는 믿음을 세워갑니다.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#worship" class="bg-gold text-white font-bold py-4 px-8 rounded-full hover:bg-yellow-600 transition shadow-lg">
+                    온라인 예배 참여하기
+                </a>
+                <a href="#location" class="bg-transparent border-2 border-white text-white font-bold py-4 px-8 rounded-full hover:bg-white hover:text-navy transition">
+                    새가족 등록 안내
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. 교회 소개 & 로고 시안 -->
+    <section id="about" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-gold font-bold tracking-wider text-sm uppercase">About Us</span>
+                <h2 class="logo-font text-4xl font-bold text-navy mt-2">교회 소개 및 비전</h2>
+                <div class="w-20 h-1 bg-gold mx-auto mt-6"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold text-navy mb-4">"순금 같이 나아오리라"</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        황금교회는 전 세계 160개국 이상에서 사역하는 국제적인 교단인 <strong>대한기독교나사렛성결회</strong> 소속입니다. 웨슬리안 성결 신학에 뿌리를 두고 '모든 사람을 그리스도 안에서 온전한 자로 세우는 것'을 목적으로 합니다.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-gold mt-1 mr-3"></i>
+                            <span class="text-gray-700">성경의 권위를 인정하는 <strong>기독교적(Christian)</strong> 가치</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-gold mt-1 mr-3"></i>
+                            <span class="text-gray-700">그리스도를 닮은 삶을 추구하는 <strong>성결함(Holiness)</strong></span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check text-gold mt-1 mr-3"></i>
+                            <span class="text-gray-700">잃어버린 영혼을 향한 열정, <strong>선교적(Missional)</strong> 사명</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- 로고 시안 전시 영역 -->
+                <div class="bg-bglight p-8 rounded-2xl border border-gray-100 shadow-sm">
+                    <h4 class="text-lg font-bold text-navy mb-6 text-center">황금교회 로고 아이덴티티</h4>
+                    
+                    <div class="space-y-6">
+                        <!-- 정통 계승형 시안 -->
+                        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex items-center justify-center gap-4">
+                            <div class="w-12 h-12 bg-navy rounded-full flex items-center justify-center text-white border-2 border-gold">
+                                <i class="fa-solid fa-dove"></i>
+                            </div>
+                            <span class="logo-font text-2xl font-bold text-navy">황금<span class="text-gold">교회</span></span>
+                        </div>
+                        <p class="text-xs text-center text-gray-500">시안 A: 나사렛 성결회 마크 중심의 정통 계승형</p>
+                        
+                        <!-- 현대 미니멀형 시안 -->
+                        <div class="bg-navy p-4 rounded-xl shadow-sm flex items-center justify-center gap-4">
+                            <div class="text-center">
+                                <i class="fa-solid fa-gem text-gold text-xl mb-1"></i>
+                                <div class="font-sans font-bold text-white tracking-widest text-lg">HWANGGEUM <span class="text-gold">CHURCH</span></div>
+                            </div>
+                        </div>
+                        <p class="text-xs text-center text-gray-500">시안 B: 현대적이고 세련된 미니멀 타이포그래피형</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 예배/말씀 (유튜브 자동 연동 영역) -->
+    <section id="worship" class="py-24 bg-bglight">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-gold font-bold tracking-wider text-sm uppercase">Worship & Word</span>
+                <h2 class="logo-font text-4xl font-bold text-navy mt-2">영상 아카이브</h2>
+                <p class="text-gray-500 mt-4">황금교회의 최근 예배 영상을 실시간으로 제공합니다.</p>
+                <div class="w-20 h-1 bg-gold mx-auto mt-6"></div>
+            </div>
+
+            <!-- 유튜브 영상 그리드 컨테이너 -->
+            <div id="youtube-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- JS를 통해 여기에 유튜브 영상 카드가 자동 생성됩니다. -->
+                <div class="col-span-3 text-center py-10 text-gray-400">
+                    <i class="fa-solid fa-circle-notch fa-spin text-4xl mb-4 text-gold"></i>
+                    <p>유튜브 채널에서 최신 영상을 불러오는 중입니다...</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block border border-navy text-navy font-bold py-3 px-8 rounded-full hover:bg-navy hover:text-white transition">
+                    유튜브 채널 바로가기 <i class="fa-brands fa-youtube ml-2 text-red-600"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 교육 부서 (탭 인터페이스) -->
+    <section id="education" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-gold font-bold tracking-wider text-sm uppercase">Education</span>
+                <h2 class="logo-font text-4xl font-bold text-navy mt-2">다음 세대 교육 부서</h2>
+                <div class="w-20 h-1 bg-gold mx-auto mt-6"></div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8 min-h-[400px]">
+                <!-- 좌측 탭 메뉴 -->
+                <div class="w-full lg:w-1/4 flex flex-col gap-3">
+                    <button onclick="openTab('tab-kids')" id="btn-kids" class="tab-btn active text-left px-6 py-4 rounded-xl border border-gray-200 text-gray-600 hover:bg-gray-50 transition font-medium">
+                        유초등부 (Kids)
+                    </button>
+                    <button onclick="openTab('tab-youth')" id="btn-youth" class="tab-btn text-left px-6 py-4 rounded-xl border border-gray-200 text-gray-600 hover:bg-gray-50 transition font-medium">
+                        중고등부 (Youth)
+                    </button>
+                    <button onclick="openTab('tab-young')" id="btn-young" class="tab-btn text-left px-6 py-4 rounded-xl border border-gray-200 text-gray-600 hover:bg-gray-50 transition font-medium">
+                        청년부 (Young Adult)
+                    </button>
+                </div>
+
+                <!-- 우측 콘텐츠 영역 -->
+                <div class="w-full lg:w-3/4 bg-bglight rounded-2xl p-8 lg:p-12 border border-gray-100 shadow-inner">
+                    <!-- 유초등부 내용 -->
+                    <div id="tab-kids" class="tab-content fade-in">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center text-white text-3xl shadow-md">
+                                <i class="fa-solid fa-child-reaching"></i>
+                            </div>
+                            <h3 class="logo-font text-3xl font-bold text-navy">황금 유초등부</h3>
+                        </div>
+                        <p class="text-lg text-gray-700 leading-relaxed mb-8">
+                            어린 시절부터 성경적 가치관을 심어주는 교육 공동체입니다. 선생님들의 따뜻한 사랑과 재미있는 성경 공부, 활동적인 레크리에이션을 통해 아이들이 하나님을 알아가는 기쁨을 누립니다.
+                        </p>
+                        <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex flex-col sm:flex-row gap-8">
+                            <div>
+                                <h4 class="font-bold text-navy mb-2"><i class="fa-regular fa-clock text-gold mr-2"></i> 예배 시간</h4>
+                                <p class="text-gray-600">주일 오전 11:00</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-navy mb-2"><i class="fa-solid fa-location-dot text-gold mr-2"></i> 장소</h4>
+                                <p class="text-gray-600">교육관 1층 유초등부실</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 중고등부 내용 -->
+                    <div id="tab-youth" class="tab-content hidden fade-in">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center text-white text-3xl shadow-md">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                            <h3 class="logo-font text-3xl font-bold text-navy">황금 중고등부</h3>
+                        </div>
+                        <p class="text-lg text-gray-700 leading-relaxed mb-8">
+                            청소년기의 정체성을 하나님 안에서 확립하고, 세상 속에서 그리스도의 제자로 살아갈 수 있도록 훈련하는 역동적인 모임입니다. 찬양팀, 또래 모임 등 다양한 활동이 준비되어 있습니다.
+                        </p>
+                        <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex flex-col sm:flex-row gap-8">
+                            <div>
+                                <h4 class="font-bold text-navy mb-2"><i class="fa-regular fa-clock text-gold mr-2"></i> 예배 시간</h4>
+                                <p class="text-gray-600">주일 오전 09:00</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-navy mb-2"><i class="fa-solid fa-location-dot text-gold mr-2"></i> 장소</h4>
+                                <p class="text-gray-600">비전센터 2층 중고등부실</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 청년부 내용 -->
+                    <div id="tab-young" class="tab-content hidden fade-in">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center text-white text-3xl shadow-md">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+                            <h3 class="logo-font text-3xl font-bold text-navy">황금 청년부</h3>
+                        </div>
+                        <p class="text-lg text-gray-700 leading-relaxed mb-8">
+                            치열한 세상 속에서 믿음의 중심을 지키며 나아가는 젊은 지성인들의 공동체입니다. 깊이 있는 말씀 나눔, 제자 훈련, 그리고 뜨거운 찬양과 기도로 시대를 변화시키는 영적 리더를 양성합니다.
+                        </p>
+                        <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex flex-col sm:flex-row gap-8">
+                            <div>
+                                <h4 class="font-bold text-navy mb-2"><i class="fa-regular fa-clock text-gold mr-2"></i> 예배 시간</h4>
+                                <p class="text-gray-600">주일 오후 02:00</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-navy mb-2"><i class="fa-solid fa-location-dot text-gold mr-2"></i> 장소</h4>
+                                <p class="text-gray-600">대예배실 (예배 후 소그룹 모임)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. 오시는 길 -->
+    <section id="location" class="py-24 bg-bglight">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-gold font-bold tracking-wider text-sm uppercase">Location</span>
+                <h2 class="logo-font text-4xl font-bold text-navy mt-2">오시는 길</h2>
+                <div class="w-20 h-1 bg-gold mx-auto mt-6"></div>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-md border border-gray-100 flex flex-col lg:flex-row gap-8">
+                <!-- 지도 정보 영역 -->
+                <div class="w-full lg:w-1/3 flex flex-col justify-center">
+                    <h3 class="text-2xl font-bold text-navy mb-6">황금교회</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-map-location-dot text-gold text-xl mt-1 mr-4 w-6 text-center"></i>
+                            <div>
+                                <p class="font-bold text-gray-800">주소</p>
+                                <p class="text-gray-600 mt-1">서울특별시 동작구 상도로34길 15</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-phone text-gold text-xl mt-1 mr-4 w-6 text-center"></i>
+                            <div>
+                                <p class="font-bold text-gray-800">전화번호</p>
+                                <p class="text-gray-600 mt-1">02-000-0000</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-car text-gold text-xl mt-1 mr-4 w-6 text-center"></i>
+                            <div>
+                                <p class="font-bold text-gray-800">주차 안내</p>
+                                <p class="text-gray-600 mt-1">교회 전용 주차장 및 인근 공영주차장 이용 가능 (주일 무료)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <a href="https://maps.app.goo.gl/UJuJ1UnSKAW8Dezi6" target="_blank" class="w-full block text-center bg-navy text-white font-bold py-4 px-6 rounded-xl hover:bg-gold transition shadow-md">
+                            구글 지도로 크게 보기 <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 구글 지도 iframe 삽입 영역 -->
+                <div class="w-full lg:w-2/3 h-80 lg:h-auto rounded-xl overflow-hidden bg-gray-200">
+                    <!-- 실제 구글 맵 임베드 코드 (해당 주소 좌표 기반) -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3164.2185257993077!2d126.9467!3d37.5029!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDMwJzEwLjQiTiAxMjbCsDU2JzQ4LjEiRQ!5e0!3m2!1sko!2skr!4v1620000000000!5m2!1sko!2skr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. 푸터 -->
+    <footer class="bg-navy text-gray-400 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <div class="flex items-center justify-center md:justify-start gap-2 mb-4">
+                    <i class="fa-solid fa-dove text-gray-500"></i>
+                    <span class="logo-font text-xl font-bold text-white tracking-tight">황금교회</span>
+                </div>
+                <p class="text-sm">대한기독교나사렛성결회 소속</p>
+                <p class="text-sm mt-1">서울특별시 동작구 상도로34길 15 | 담임목사: [이름입력]</p>
+                <p class="text-sm mt-4 text-gray-500">© 2026 Hwanggeum Church. All rights reserved.</p>
+            </div>
+            <div>
+                <a href="https://na.or.kr/" target="_blank" class="inline-block px-6 py-2 border border-gray-600 rounded text-sm hover:bg-gray-800 hover:text-white transition">
+                    나사렛성결회 총회 홈페이지 <i class="fa-solid fa-angle-right ml-1"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 스크립트 영역 -->
+    <script>
+        // 1. 모바일 메뉴 토글
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // 2. 교육 부서 탭 시스템 로직
+        function openTab(tabId) {
+            // 모든 콘텐츠 숨기기
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.add('hidden'));
+            
+            // 모든 버튼 active 해제
+            const btns = document.querySelectorAll('.tab-btn');
+            btns.forEach(btn => btn.classList.remove('active', 'bg-gold', 'text-white'));
+            
+            // 선택된 탭 보여주기
+            document.getElementById(tabId).classList.remove('hidden');
+            
+            // 선택된 버튼 활성화
+            const activeBtn = event.currentTarget || document.getElementById('btn-' + tabId.split('-')[1]);
+            activeBtn.classList.add('active');
+        }
+
+        // 3. 유튜브 API 연동 로직 (가상/실제)
+        async function fetchYouTubeVideos() {
+            const container = document.getElementById('youtube-container');
+            
+            // [서버 적용 시 안내사항]
+            // 실제 사용 시 구글 클라우드 콘솔에서 API 키를 발급받아 아래 API_KEY에 넣고,
+            // 채널 ID를 변경하시면 실제 영상이 자동으로 연동됩니다.
+            const API_KEY = 'YOUR_ACTUAL_YOUTUBE_API_KEY';
+            const CHANNEL_ID = 'YOUR_CHANNEL_ID'; 
+            
+            // 현재는 API 키가 없으므로 화면 디자인 확인을 위해 임시 목업 데이터를 보여줍니다.
+            const useMockData = true; 
+
+            try {
+                let videos = [];
+                
+                if (useMockData) {
+                    // 서버 적용 전 임시 디자인 데이터
+                    videos = [
+                        { id: 'video1', title: '[주일대예배] 흔들리지 않는 황금빛 믿음', date: '2026.05.03', thumb: 'https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?w=600&h=337&fit=crop' },
+                        { id: 'video2', title: '[수요예배] 성령의 충만함을 받으라', date: '2026.04.29', thumb: 'https://images.unsplash.com/photo-1504052434569-70ad5836ab65?w=600&h=337&fit=crop' },
+                        { id: 'video3', title: '[주일대예배] 그리스도를 닮아가는 삶', date: '2026.04.26', thumb: 'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?w=600&h=337&fit=crop' }
+                    ];
+                } else {
+                    // 실제 API 호출 로직 (API 키 입력 후 활성화 됨)
+                    const res = await fetch(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=3`);
+                    const data = await res.json();
+                    videos = data.items.map(item => ({
+                        id: item.id.videoId,
+                        title: item.snippet.title,
+                        date: new Date(item.snippet.publishedAt).toLocaleDateString(),
+                        thumb: item.snippet.thumbnails.medium.url
+                    }));
+                }
+
+                // 컨테이너 초기화
+                container.innerHTML = '';
+
+                // 영상 카드 렌더링
+                videos.forEach(video => {
+                    const card = document.createElement('div');
+                    card.className = 'bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-1';
+                    card.innerHTML = `
+                        <div class="relative w-full aspect-video bg-gray-200">
+                            <img src="${video.thumb}" alt="썸네일" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center opacity-0 hover:opacity-100 transition duration-300">
+                                <i class="fa-solid fa-play text-white text-5xl drop-shadow-md"></i>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-sm text-gold font-bold mb-2">${video.date}</p>
+                            <h3 class="text-lg font-bold text-navy line-clamp-2 leading-snug">${video.title}</h3>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+
+            } catch (error) {
+                container.innerHTML = `
+                    <div class="col-span-3 text-center py-10 text-red-500">
+                        영상을 불러오는 데 실패했습니다. 관리자에게 문의해주세요.
+                    </div>
+                `;
+            }
+        }
+
+        // 페이지 로드 시 유튜브 영상 불러오기 실행
+        document.addEventListener('DOMContentLoaded', fetchYouTubeVideos);
+
+    </script>
+</body>
+</html>

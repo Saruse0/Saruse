@@ -199,14 +199,24 @@
                 <div class="w-20 h-1 bg-gold mx-auto mt-6"></div>
             </div>
 
-            <!-- 유튜브 영상 그리드 컨테이너 -->
-            <div id="youtube-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- JS를 통해 여기에 유튜브 영상 카드가 자동 생성됩니다. -->
-                <div class="col-span-3 text-center py-10 text-gray-400">
-                    <i class="fa-solid fa-circle-notch fa-spin text-4xl mb-4 text-gold"></i>
-                    <p>유튜브 채널에서 최신 영상을 불러오는 중입니다...</p>
+            <!-- 유튜브 영상 캐러셀 컨테이너 -->
+            <div class="relative">
+                <div id="youtube-container" class="flex gap-6 overflow-x-auto scroll-smooth pb-4" style="scrollbar-width: none; -ms-overflow-style: none;">
+                    <!-- JS를 통해 여기에 유튜브 영상 카드가 자동 생성됩니다. -->
+                    <div class="flex-shrink-0 w-full text-center py-10 text-gray-400">
+                        <i class="fa-solid fa-circle-notch fa-spin text-4xl mb-4 text-gold"></i>
+                        <p>유튜브 채널에서 최신 영상을 불러오는 중입니다...</p>
+                    </div>
                 </div>
+                <!-- 좌우 화살표 버튼 -->
+                <button id="scroll-left" onclick="scrollCarousel(-1)" class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-10 h-10 bg-white border border-gray-200 rounded-full shadow-md items-center justify-center text-navy hover:bg-gold hover:text-white transition z-10">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button id="scroll-right" onclick="scrollCarousel(1)" class="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-10 h-10 bg-white border border-gray-200 rounded-full shadow-md items-center justify-center text-navy hover:bg-gold hover:text-white transition z-10">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
             </div>
+            <p class="text-center text-sm text-gray-400 mt-3 md:hidden">← 좌우로 스와이프하여 더 보기 →</p>
             
             <div class="text-center mt-12">
                 <a href="https://www.youtube.com/channel/UCjOqWrxQyJdpRD-K5Ywrtpw" target="_blank" class="inline-block border border-navy text-navy font-bold py-3 px-8 rounded-full hover:bg-navy hover:text-white transition">
@@ -360,7 +370,7 @@
                 <!-- 구글 지도 iframe 삽입 영역 -->
                 <div class="w-full lg:w-2/3 h-80 lg:h-auto rounded-xl overflow-hidden bg-gray-200">
                     <!-- 실제 구글 맵 임베드 코드 (해당 주소 좌표 기반) -->
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3173.5!2d126.8292!3d36.9758!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b2f1a1a1a1a1b%3A0x0!2z6rK96ri464yA7Zmc7YGs7Iah7Iuc7JuQ7J6l6rCB7IiY64qY1EfgQ!5e0!3m2!1sko!2skr!4v1620000000000!5m2!1sko!2skr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    <iframe src="https://maps.google.com/maps?q=경기+평택시+안중읍+경성1길+23&hl=ko&z=16&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </div>
@@ -438,12 +448,12 @@
                     ];
                 } else {
                     // 실제 API 호출 로직 (API 키 입력 후 활성화 됨)
-                    const res = await fetch(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=3`);
+                    const res = await fetch(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=10`);
                     const data = await res.json();
-                    videos = data.items.map(item => ({
+                    videos = data.items.filter(item => item.id.videoId).map(item => ({
                         id: item.id.videoId,
                         title: item.snippet.title,
-                        date: new Date(item.snippet.publishedAt).toLocaleDateString(),
+                        date: new Date(item.snippet.publishedAt).toLocaleDateString('ko-KR'),
                         thumb: item.snippet.thumbnails.medium.url
                     }));
                 }
@@ -451,10 +461,11 @@
                 // 컨테이너 초기화
                 container.innerHTML = '';
 
-                // 영상 카드 렌더링
+                // 영상 카드 렌더링 (캐러셀)
                 videos.forEach(video => {
                     const card = document.createElement('div');
-                    card.className = 'bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-1 cursor-pointer';
+                    card.className = 'flex-shrink-0 bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-1 cursor-pointer';
+                    card.style.width = 'clamp(260px, 30vw, 320px)';
                     card.onclick = () => window.open('https://www.youtube.com/watch?v=' + video.id, '_blank');
                     card.innerHTML = `
                         <div class="relative w-full aspect-video bg-gray-200">
@@ -463,21 +474,34 @@
                                 <i class="fa-solid fa-play text-white text-5xl drop-shadow-md"></i>
                             </div>
                         </div>
-                        <div class="p-6">
-                            <p class="text-sm text-gold font-bold mb-2">${video.date}</p>
-                            <h3 class="text-lg font-bold text-navy line-clamp-2 leading-snug">${video.title}</h3>
+                        <div class="p-4">
+                            <p class="text-xs text-gold font-bold mb-1">${video.date}</p>
+                            <h3 class="text-sm font-bold text-navy line-clamp-2 leading-snug">${video.title}</h3>
                         </div>
                     `;
                     container.appendChild(card);
                 });
 
+                // 화살표 버튼 표시
+                document.getElementById('scroll-left').classList.remove('hidden');
+                document.getElementById('scroll-left').classList.add('flex');
+                document.getElementById('scroll-right').classList.remove('hidden');
+                document.getElementById('scroll-right').classList.add('flex');
+
             } catch (error) {
                 container.innerHTML = `
-                    <div class="col-span-3 text-center py-10 text-red-500">
+                    <div class="flex-shrink-0 w-full text-center py-10 text-red-500">
                         영상을 불러오는 데 실패했습니다. 관리자에게 문의해주세요.
                     </div>
                 `;
             }
+        }
+
+        // 캐러셀 스크롤 함수
+        function scrollCarousel(direction) {
+            const container = document.getElementById('youtube-container');
+            const cardWidth = container.querySelector('div') ? container.querySelector('div').offsetWidth + 24 : 340;
+            container.scrollBy({ left: direction * cardWidth * 2, behavior: 'smooth' });
         }
 
         // 페이지 로드 시 유튜브 영상 불러오기 실행

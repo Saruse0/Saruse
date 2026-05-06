@@ -103,7 +103,7 @@
     <section class="relative pt-20 pb-32 flex items-center justify-center min-h-[80vh] bg-navy overflow-hidden">
         <!-- 배경 오버레이 및 이미지 (Unsplash API 플레이스홀더) -->
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?q=80&w=2000&auto=format&fit=crop" alt="Background" class="w-full h-full object-cover opacity-30">
+            <img src="https://images.unsplash.com/photo-1504052434569-70ad5836ab65?q=80&w=2000&auto=format&fit=crop" alt="Background" class="w-full h-full object-cover opacity-30">
         </div>
         
         <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-16">
@@ -156,28 +156,33 @@
                     </ul>
                 </div>
                 
-                <!-- 로고 시안 전시 영역 -->
-                <div class="bg-bglight p-8 rounded-2xl border border-gray-100 shadow-sm">
-                    <h4 class="text-lg font-bold text-navy mb-6 text-center">황금교회 로고 아이덴티티</h4>
+                <!-- 담임목사 소개 영역 -->
+                <div class="bg-bglight p-8 rounded-2xl border border-gray-100 shadow-sm flex flex-col items-center text-center">
+                    <!-- 목사 사진 영역 -->
+                    <div class="w-40 h-40 rounded-full overflow-hidden border-4 border-gold shadow-lg mb-6 bg-gray-200 flex items-center justify-center">
+                        <!-- 목사 사진을 아래 img 태그의 src에 넣어주세요 -->
+                        <!-- <img src="사진경로.jpg" alt="담임목사 사진" class="w-full h-full object-cover"> -->
+                        <div class="flex flex-col items-center text-gray-400">
+                            <i class="fa-solid fa-user text-5xl mb-2"></i>
+                            <span class="text-xs">목사 사진</span>
+                        </div>
+                    </div>
                     
-                    <div class="space-y-6">
-                        <!-- 정통 계승형 시안 -->
-                        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex items-center justify-center gap-4">
-                            <div class="w-12 h-12 bg-navy rounded-full flex items-center justify-center text-white border-2 border-gold">
-                                <i class="fa-solid fa-dove"></i>
-                            </div>
-                            <span class="logo-font text-2xl font-bold text-navy">황금<span class="text-gold">교회</span></span>
-                        </div>
-                        <p class="text-xs text-center text-gray-500">시안 A: 나사렛 성결회 마크 중심의 정통 계승형</p>
-                        
-                        <!-- 현대 미니멀형 시안 -->
-                        <div class="bg-navy p-4 rounded-xl shadow-sm flex items-center justify-center gap-4">
-                            <div class="text-center">
-                                <i class="fa-solid fa-gem text-gold text-xl mb-1"></i>
-                                <div class="font-sans font-bold text-white tracking-widest text-lg">HWANGGEUM <span class="text-gold">CHURCH</span></div>
-                            </div>
-                        </div>
-                        <p class="text-xs text-center text-gray-500">시안 B: 현대적이고 세련된 미니멀 타이포그래피형</p>
+                    <!-- 목사 이름/직함 -->
+                    <p class="text-sm text-gold font-bold tracking-wider uppercase mb-1">담임목사</p>
+                    <h4 class="logo-font text-2xl font-bold text-navy mb-1">[이름] 목사</h4>
+                    <p class="text-sm text-gray-400 mb-6">대한기독교나사렛성결회 황금교회</p>
+                    
+                    <div class="w-12 h-0.5 bg-gold mb-6"></div>
+                    
+                    <!-- 환영의 말씀 -->
+                    <div class="text-left">
+                        <h5 class="font-bold text-navy mb-3 text-center">✉ 환영의 말씀</h5>
+                        <p class="text-gray-600 leading-relaxed text-sm">
+                            황금교회에 오신 여러분을 주님의 이름으로 진심으로 환영합니다.<br><br>
+                            이곳은 세상에서 지치고 상처받은 모든 분들이 쉼을 얻고, 예수 그리스도의 황금빛 사랑 안에서 새 힘을 얻는 공동체입니다. 문은 언제나 활짝 열려 있습니다.<br><br>
+                            <span class="text-gold font-semibold">"순금 같이 나아오리라" (욥 23:10)</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -204,7 +209,7 @@
             </div>
             
             <div class="text-center mt-12">
-                <a href="#" class="inline-block border border-navy text-navy font-bold py-3 px-8 rounded-full hover:bg-navy hover:text-white transition">
+                <a href="https://www.youtube.com/channel/UCjOqWrxQyJdpRD-K5Ywrtpw" target="_blank" class="inline-block border border-navy text-navy font-bold py-3 px-8 rounded-full hover:bg-navy hover:text-white transition">
                     유튜브 채널 바로가기 <i class="fa-brands fa-youtube ml-2 text-red-600"></i>
                 </a>
             </div>
@@ -327,7 +332,7 @@
                             <i class="fa-solid fa-map-location-dot text-gold text-xl mt-1 mr-4 w-6 text-center"></i>
                             <div>
                                 <p class="font-bold text-gray-800">주소</p>
-                                <p class="text-gray-600 mt-1">서울특별시 동작구 상도로34길 15</p>
+                                <p class="text-gray-600 mt-1">경기 평택시 안중읍 경성1길 23</p>
                             </div>
                         </div>
                         <div class="flex items-start">
@@ -346,7 +351,7 @@
                         </div>
                     </div>
                     <div class="mt-8">
-                        <a href="https://maps.app.goo.gl/UJuJ1UnSKAW8Dezi6" target="_blank" class="w-full block text-center bg-navy text-white font-bold py-4 px-6 rounded-xl hover:bg-gold transition shadow-md">
+                        <a href="https://maps.google.com/?q=경기+평택시+안중읍+경성1길+23" target="_blank" class="w-full block text-center bg-navy text-white font-bold py-4 px-6 rounded-xl hover:bg-gold transition shadow-md">
                             구글 지도로 크게 보기 <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
                         </a>
                     </div>
@@ -355,7 +360,7 @@
                 <!-- 구글 지도 iframe 삽입 영역 -->
                 <div class="w-full lg:w-2/3 h-80 lg:h-auto rounded-xl overflow-hidden bg-gray-200">
                     <!-- 실제 구글 맵 임베드 코드 (해당 주소 좌표 기반) -->
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3164.2185257993077!2d126.9467!3d37.5029!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDMwJzEwLjQiTiAxMjbCsDU2JzQ4LjEiRQ!5e0!3m2!1sko!2skr!4v1620000000000!5m2!1sko!2skr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3173.5!2d126.8292!3d36.9758!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b2f1a1a1a1a1b%3A0x0!2z6rK96ri464yA7Zmc7YGs7Iah7Iuc7JuQ7J6l6rCB7IiY64qY1EfgQ!5e0!3m2!1sko!2skr!4v1620000000000!5m2!1sko!2skr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </div>
@@ -370,7 +375,7 @@
                     <span class="logo-font text-xl font-bold text-white tracking-tight">황금교회</span>
                 </div>
                 <p class="text-sm">대한기독교나사렛성결회 소속</p>
-                <p class="text-sm mt-1">서울특별시 동작구 상도로34길 15 | 담임목사: [이름입력]</p>
+                <p class="text-sm mt-1">경기 평택시 안중읍 경성1길 23 | 담임목사: [이름입력]</p>
                 <p class="text-sm mt-4 text-gray-500">© 2026 Hwanggeum Church. All rights reserved.</p>
             </div>
             <div>
@@ -449,7 +454,8 @@
                 // 영상 카드 렌더링
                 videos.forEach(video => {
                     const card = document.createElement('div');
-                    card.className = 'bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-1';
+                    card.className = 'bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-1 cursor-pointer';
+                    card.onclick = () => window.open('https://www.youtube.com/watch?v=' + video.id, '_blank');
                     card.innerHTML = `
                         <div class="relative w-full aspect-video bg-gray-200">
                             <img src="${video.thumb}" alt="썸네일" class="w-full h-full object-cover">
